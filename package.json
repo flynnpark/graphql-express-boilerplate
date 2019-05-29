@@ -1,0 +1,14 @@
+{
+  "name": "graphql-yoga-boilerplate",
+  "version": "0.1.0",
+  "description": "Graphql Yoga Boilerplate for personal use.",
+  "main": "src/index.js",
+  "author": "Flynn <wphestiraid@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.17.4"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
