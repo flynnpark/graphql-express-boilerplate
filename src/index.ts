@@ -1,21 +1,13 @@
-import { GraphQLServer } from 'graphql-yoga';
+import { createConnection } from 'typeorm';
+import app from './app';
+import connectionOptions from './ormConfig';
 
-interface Parameter {
-  name: string | undefined;
-}
+const PORT: number | string = process.env.PORT || 4000;
 
-const typeDefs: string = `
-  type Query {
-    hello(name: String): String!
-  }
-`;
+const handleAppStart = () => console.log(`Listening on port ${PORT}`);
 
-const resolvers = {
-  Query: {
-    hello: (_: null | undefined, { name }: Parameter) =>
-      `Hello ${name || 'World'}`
-  }
-};
-
-const server: GraphQLServer = new GraphQLServer({ typeDefs, resolvers });
-server.start(() => console.log('Server is running on localhost: 4000'));
+createConnection(connectionOptions)
+  .then(() => {
+    app.start(handleAppStart);
+  })
+  .catch(error => console.error(error));
