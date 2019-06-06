@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=movielog
+      - POSTGRES_USER=movielog
+      - POSTGRES_PASSWORD=movielog
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    healthcheck:
+      test: 'pg_isready -h localhost -p 5432 -q -U movielog'
+      interval: 3s
+      timeout: 1s
+      retries: 10
+
+  graphql-boilerplate:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: graphql-boilerplate-api:0.1.0
+    container_name: graphql-boilerplate-api
+    ports:
+      - '4000:4000'
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - ./src:/usr/src/app/src
