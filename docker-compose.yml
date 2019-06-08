@@ -5,12 +5,12 @@ services:
     image: postgres
     restart: always
     environment:
-      - POSTGRES_DB=movielog
-      - POSTGRES_USER=movielog
-      - POSTGRES_PASSWORD=movielog
+      - POSTGRES_DB=boilerplate
+      - POSTGRES_USER=boilerplate
+      - POSTGRES_PASSWORD=boilerplate
       - POSTGRES_INITDB_ARGS=--encoding=UTF-8
     healthcheck:
-      test: 'pg_isready -h localhost -p 5432 -q -U movielog'
+      test: 'pg_isready -h localhost -p 5432 -q -U boilerplate'
       interval: 3s
       timeout: 1s
       retries: 10
