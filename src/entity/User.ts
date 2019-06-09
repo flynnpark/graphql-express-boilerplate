@@ -1,5 +1,6 @@
 import { compare, hash } from 'bcrypt';
 import {
+  BaseEntity,
   BeforeInsert,
   BeforeUpdate,
   Column,
@@ -11,7 +12,7 @@ import {
 const BCRYPT_ROUNDS = 100;
 
 @Entity()
-class User {
+class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
