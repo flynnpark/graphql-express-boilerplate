@@ -10,6 +10,7 @@
     "@types/cors": "^2.8.5",
     "@types/helmet": "^0.0.43",
     "@types/morgan": "^1.7.35",
+    "apollo-server": "^2.6.2",
     "bcrypt": "^3.0.6",
     "cors": "^2.8.5",
     "graphql-yoga": "^1.17.4",
@@ -22,10 +23,10 @@
     "typescript": "^3.5.1"
   },
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "nodemon --exec ts-node src/index.ts -e ts,graphql"
   },
   "devDependencies": {
-    "@types/node": "^12.0.4",
+    "@types/node": "^12.0.7",
     "tslint-config-prettier": "^1.18.0"
   }
 }
