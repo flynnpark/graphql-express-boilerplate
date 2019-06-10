@@ -10,6 +10,7 @@ extend type Mutation {
     avatar: String
     shortBio: String
   ): EmailSignUpResponse!
+  emailSignIn(email: String!, password: String!): EmailSignInResponse!
 }
 
 type User {
@@ -23,6 +24,12 @@ type User {
 }
 
 type EmailSignUpResponse {
+  ok: Boolean!
+  error: String
+  token: String
+}
+
+type EmailSignInResponse {
   ok: Boolean!
   error: String
   token: String
