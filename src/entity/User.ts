@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn
 } from 'typeorm';
 
-const BCRYPT_ROUNDS = 100;
+const BCRYPT_ROUNDS = 10;
 
 @Entity()
 class User extends BaseEntity {
@@ -25,7 +25,7 @@ class User extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'text', nullable: true })
   shortBio: string | null;
 
   @Column({ type: 'varchar', length: 500, nullable: true })
@@ -34,10 +34,10 @@ class User extends BaseEntity {
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', length: 100, nullable: true })
   googleId: string | null;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', length: 100, nullable: true })
   facebookId: string | null;
 
   @BeforeInsert()

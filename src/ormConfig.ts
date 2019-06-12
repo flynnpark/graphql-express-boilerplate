@@ -9,11 +9,11 @@ const connectionOptions: ConnectionOptions = {
   password: process.env.DB_PASSWORD,
   synchronize: true,
   logging: true,
-  entities: ['entity/**/*.ts'],
-  migrations: ['migration/**/*.ts'],
+  entities: [__dirname + '/entity/**/*.ts'],
+  migrations: [__dirname + '/migration/**/*.ts'],
   cli: {
-    entitiesDir: 'entity',
-    migrationsDir: 'migration'
+    entitiesDir: __dirname + '/entity',
+    migrationsDir: __dirname + '/migration'
   }
 };
 
