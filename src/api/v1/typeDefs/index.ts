@@ -1,7 +1,9 @@
 import { gql } from 'apollo-server';
 import fs from 'fs';
 
-const linkTypeDefs = gql`
+const userTypeDefs = fs.readFileSync(__dirname.concat('/user.graphql'), 'utf8');
+
+const typeDefs = `
   type Query {
     _: Boolean
   }
@@ -11,8 +13,7 @@ const linkTypeDefs = gql`
   type Subscription {
     _: Boolean
   }
+  ${userTypeDefs}
 `;
 
-const userTypeDefs = fs.readFileSync(__dirname.concat('/user.graphql'), 'utf8');
-
-export default [linkTypeDefs, userTypeDefs];
+export default typeDefs;

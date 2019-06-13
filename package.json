@@ -10,7 +10,7 @@
     "@types/cors": "^2.8.5",
     "@types/helmet": "^0.0.43",
     "@types/morgan": "^1.7.35",
-    "apollo-server": "^2.6.2",
+    "apollo-server": "^2.6.3",
     "bcrypt": "^3.0.6",
     "cors": "^2.8.5",
     "graphql-yoga": "^1.17.4",
@@ -19,14 +19,17 @@
     "pg": "^7.11.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^8.2.0",
-    "typeorm": "^0.2.18",
-    "typescript": "^3.5.1"
+    "typeorm": "^0.2.18"
   },
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts -e ts,graphql"
   },
   "devDependencies": {
-    "@types/node": "^12.0.7",
-    "tslint-config-prettier": "^1.18.0"
+    "@types/node": "^12.0.8",
+    "serverless": "^1.45.1",
+    "serverless-offline": "^5.3.3",
+    "serverless-plugin-typescript": "^1.1.7",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.1"
   }
 }

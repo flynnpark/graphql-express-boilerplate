@@ -13,7 +13,10 @@ const setMiddleware = (app: GraphQLServer): void => {
 };
 
 const initGraphQLServer = (): GraphQLServer => {
-  const app: GraphQLServer = new GraphQLServer({ typeDefs, resolvers });
+  const app: GraphQLServer = new GraphQLServer({
+    typeDefs,
+    resolvers
+  });
   setMiddleware(app);
   return app;
 };
