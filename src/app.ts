@@ -2,8 +2,7 @@ import cors from 'cors';
 import { GraphQLServer } from 'graphql-yoga';
 import helmet from 'helmet';
 import logger from 'morgan';
-import resolvers from './api/v1/resolvers';
-import typeDefs from './api/v1/typeDefs';
+import schema from './schema';
 
 const setMiddleware = (app: GraphQLServer): void => {
   const { express } = app;
@@ -13,10 +12,7 @@ const setMiddleware = (app: GraphQLServer): void => {
 };
 
 const initGraphQLServer = (): GraphQLServer => {
-  const app: GraphQLServer = new GraphQLServer({
-    typeDefs,
-    resolvers
-  });
+  const app: GraphQLServer = new GraphQLServer({ schema });
   setMiddleware(app);
   return app;
 };
