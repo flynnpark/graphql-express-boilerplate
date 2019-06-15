@@ -1,20 +1,34 @@
+import { ApolloServer } from 'apollo-server-express';
 import cors from 'cors';
-import { GraphQLServer } from 'graphql-yoga';
+import express from 'express';
 import helmet from 'helmet';
 import logger from 'morgan';
+import 'reflect-metadata';
+import { createConnection } from 'typeorm';
+import connectionOptions from './ormConfig';
 import schema from './schema';
 
-const setMiddleware = (app: GraphQLServer): void => {
-  const { express } = app;
-  express.use(cors());
-  express.use(logger('dev'));
-  express.use(helmet());
+const app = express();
+
+app.use(cors());
+app.use(logger('dev'));
+app.use(helmet());
+
+const apolloServer = new ApolloServer({
+  schema,
+  playground: true
+});
+apolloServer.applyMiddleware({ app });
+
+const initializeDb = async (): Promise<void> => {
+  try {
+    createConnection(connectionOptions);
+    console.log('Database connection initialized!');
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const initGraphQLServer = (): GraphQLServer => {
-  const app: GraphQLServer = new GraphQLServer({ schema });
-  setMiddleware(app);
-  return app;
-};
+initializeDb();
 
-export default initGraphQLServer();
+export default app;
