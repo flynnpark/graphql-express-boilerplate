@@ -1,30 +1,22 @@
 service: graphql-yoga-boilerplate
 
-package:
-  include:
-    - src/**/*.graphql
-
 plugins:
-  - serverless-plugin-typescript
+  - serverless-webpack
   - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs10
+  region: ap-northeast-2
+  stage: dev
 
 functions:
-  graphql:
-    handler: src/lambda.server
+  app:
+    handler: src/serverless.handler
     events:
       - http:
           path: /
-          method: post
-          cors: true
-
-  playground:
-    handler: src/lambda.playground
-    events:
+          method: ANY
       - http:
-          path: /
-          method: get
-          cors: true
+          path: /{any+}
+          method: ANY

@@ -4,7 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 import logger from 'morgan';
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
+import { Connection, createConnection, getConnection } from 'typeorm';
 import connectionOptions from './ormConfig';
 import schema from './schema';
 
@@ -22,10 +22,14 @@ apolloServer.applyMiddleware({ app });
 
 const initializeDb = async (): Promise<void> => {
   try {
-    createConnection(connectionOptions);
+    getConnection();
+    // await createConnection(connectionOptions);
     console.log('Database connection initialized!');
   } catch (error) {
-    console.log(error);
+    if (error.name !== 'ConnectionNotFoundError') {
+      throw error;
+    }
+    await createConnection(connectionOptions);
   }
 };
 
