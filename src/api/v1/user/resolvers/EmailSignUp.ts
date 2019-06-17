@@ -1,4 +1,3 @@
-import { getRepository } from 'typeorm';
 import User from '../../../../entity/User';
 
 const resolver = {
@@ -19,7 +18,7 @@ const resolver = {
     }> => {
       try {
         const { email } = args;
-        const existingUser = await getRepository(User).findOne({ email });
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
           return {
             ok: false,
@@ -34,7 +33,7 @@ const resolver = {
           token: 'TOKEN WILL BE HERE'
         };
       } catch (error) {
-        console.log(error);
+        console.error(error);
         return {
           ok: false,
           error,

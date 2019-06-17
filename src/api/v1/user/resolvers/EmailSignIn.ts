@@ -34,6 +34,7 @@ const resolver = {
           };
         }
       } catch (error) {
+        console.error(error);
         return {
           ok: false,
           error,
