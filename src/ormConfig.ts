@@ -1,6 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
 
 const connectionOptions: ConnectionOptions = {
+  name: 'default',
   type: 'postgres',
   database: 'boilerplate',
   port: 5432,
@@ -9,8 +10,8 @@ const connectionOptions: ConnectionOptions = {
   password: process.env.DB_PASSWORD,
   synchronize: true,
   logging: true,
-  entities: ['src/entity/**/*{.ts,.js}'],
-  migrations: ['src/migration/**/*{.ts,.js}'],
+  entities: [__dirname + '/entity/*{.ts,.js}'],
+  migrations: [__dirname + '/migration/*{.ts,.js}'],
   cli: {
     entitiesDir: 'src/entity',
     migrationsDir: 'src/migration'

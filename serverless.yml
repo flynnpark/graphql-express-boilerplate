@@ -1,7 +1,6 @@
 service: graphql-yoga-boilerplate
 
 plugins:
-  - serverless-webpack
   - serverless-offline
 
 provider:
@@ -12,7 +11,7 @@ provider:
 
 functions:
   app:
-    handler: src/serverless.handler
+    handler: .build/serverless.handler
     events:
       - http:
           path: /
