@@ -1,4 +1,5 @@
 import User from '../../../../entity/User';
+import { createJWT } from '../../../../utils/jwt';
 
 const resolver = {
   Mutation: {
@@ -26,11 +27,12 @@ const resolver = {
             token: null
           };
         }
-        await User.create({ ...args }).save();
+        const newUser = await User.create({ ...args }).save();
+        const token = createJWT(newUser.id);
         return {
           ok: true,
           error: null,
-          token: 'TOKEN WILL BE HERE'
+          token
         };
       } catch (error) {
         console.error(error);

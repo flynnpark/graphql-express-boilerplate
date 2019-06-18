@@ -1,4 +1,5 @@
 import User from '../../../../entity/User';
+import { createJWT } from '../../../../utils/jwt';
 
 const resolver = {
   Mutation: {
@@ -21,10 +22,11 @@ const resolver = {
         }
         const checkPassword = await user.comparePassword(password);
         if (checkPassword) {
+          const token = createJWT(user.id);
           return {
             ok: true,
             error: null,
-            token: 'TOKEN WILL BE HERE'
+            token
           };
         } else {
           return {
