@@ -5,7 +5,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs10
+  runtime: nodejs10.x
   region: ap-northeast-2
   stage: dev
 

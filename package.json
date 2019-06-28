@@ -33,10 +33,12 @@
     "typeorm": "^0.2.18"
   },
   "scripts": {
-    "start": "nodemon --exec ts-node src/server.ts -e ts,graphql",
     "build": "tsc",
     "copy-graphql": "copy ./src/api/v1/**/*.graphql ./.build/api/v1/",
-    "dev": "yarn build && yarn copy-graphql && sls offline start --skipCacheInvalidation"
+    "dev:server": "nodemon --exec ts-node src/server.ts -e ts",
+    "dev:serverless": "yarn build && sls offline start --skipCacheInvalidation",
+    "deploy:dev": "yarn build && sls deploy",
+    "deploy:prod": "yarn build && sls deploy --stage prod"
   },
   "devDependencies": {
     "@types/node": "^12.0.8",
