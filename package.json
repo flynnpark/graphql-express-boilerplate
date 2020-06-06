@@ -15,7 +15,7 @@
     "@types/morgan": "^1.7.35",
     "apollo-server": "^2.6.3",
     "apollo-server-core": "^2.6.3",
-    "apollo-server-express": "^2.6.3",
+    "apollo-server-express": "^2.14.2",
     "bcrypt": "^3.0.6",
     "copy": "^0.3.2",
     "cors": "^2.8.5",
